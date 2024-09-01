@@ -15,8 +15,7 @@ Welcome to the Workout Planner project! This is a simple yet powerful tool to he
 3. Add exercises to your routine and set the desired sets, reps, and weights.
 4. Track your progress by marking completed workouts.
 5. View reports and statistics to analyze your performance.
-
-
+x
 ## Files
 
 In the context of web development, files play a crucial role in organizing and structuring your project. Here are some key aspects to consider when working with files in HTML, CSS, and JavaScript:
