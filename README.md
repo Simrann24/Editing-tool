@@ -5,8 +5,9 @@ Welcome to the Workout Planner project! This is a simple yet powerful tool to he
 - Create and manage workout routines
 - Track your progress and set goals
 - Access a library of exercises with detailed instructions
+- Access workout history and track progress over time
 - Schedule workouts and receive reminders
-- Generate workout reports and statistics
+- Generate workout reports and statisticsg
 
 ## Usage
 
