@@ -1,7 +1,56 @@
+body {
+    background-color: #181818;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+
+
+.navbar {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    background-color: #010807ed;
+    padding: 10px 0;
+    width: 100%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly; 
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    margin: 0;
+}
+
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px; 
+    transition: background 0.3s ease;
+}
+
+.navbar a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
 .tracker {
     font-size: 14px;
     border-collapse: collapse;
-    width: 600px;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #ffffff29; 
+    margin-top:90px;
 }
 
 .tracker,
@@ -12,40 +61,38 @@
 .tracker th {
     font-size: 1.15em;
     text-align: left;
-    font-weight: normal;
+    font-weight: bold;
     color: #ffffff;
-    background: #009578;
+    background: #021010d2;
+    padding: 1em;
+    text-transform: uppercase;
 }
 
-.tracker th,
 .tracker td {
     padding: 0.75em;
+    text-align: left;
+    border: none;
 }
 
-.tracker__entries .tracker__row {
-    background: #eeeeee;
-}
 
-.tracker__entries .tracker__row:nth-child(odd) {
-    background: #dddddd;
+.summary{
+    color:white;
 }
-
 .tracker__date,
 .tracker__workout,
 .tracker__duration {
     display: inline-block;
+    width: 100%;
     box-sizing: border-box;
-    font-size: 1em;
-    height: 2.5em;
-    padding: 0.5em 0;
-    border: none;
-    outline: none;
-    background: none;
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #ffffff;
 }
 
 .tracker__duration {
     width: 5em;
-    text-align: right;
+    text-align: center;
 }
 
 .tracker__button {
@@ -54,35 +101,108 @@
     justify-content: center;
     background: none;
     border: none;
-    border-radius: 50%;
-    outline: none;
     color: red;
     font-size: 1.5em;
-    margin-left: 0.5em;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 .tracker__button:hover {
-    background: rgba(0, 0, 0, 0.1);
-}
-
-.tracker__row--add {
-    border-top: 3px solid #333333;
-    border-bottom: 3px solid #333333;
-    background: #ffffff;
-}
-
-.tracker__row--add td {
-    text-align: right;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
 }
 
 .tracker__add {
-    display: inline-block;
     padding: 0.8em 1em;
-    color: green;
+    color: #009578;
+    font-size: 1.1em;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 .tracker__add:hover {
-    background:rgba(0, 0, 0, 0.1);
+    background: rgba(0, 149, 120, 0.1);
+}
+.tracker__update {
+    background-color: #009578;
+    color: #ffffff;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.9em;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.tracker__update:hover {
+    background-color: #007a5c;
+}
+
+.bmi-calculator {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 20%;
+    background-color: #282926;
+    padding: 1.5em;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bmi__height,
+.bmi__weight {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.bmi__height input,
+.bmi__weight input {
+    width: 40%;
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.bmi__calculate {
+    width: 40%;
+    margin-top: 10px;
+    background-color: #009578;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.bmi__calculate:hover {
+    background-color: #007a5c;
+}
+
+.bmi__result {
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.7em;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input:focus, select:focus {
+    border-color: #009578;
+    outline: none;
+}
+.calendar__date{
+    width: 10%;
 }
