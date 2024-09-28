@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness Tracker Homepage</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="home.css"> 
 </head>
 <body>
 
     <nav class="navbar">
-        <ul>
+        <div class="navbar-toggle" id="navbar-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul id="navbar-list">
             <li><a href="#home">Home</a></li>
             <li><a href="./table.html">Workout Tracker</a></li>
-            <li><a href="./bmi.html">BMI Calculator</a></li>
+            <li><a href="./index.html">BMI Calculator</a></li>
             <li><a href="#summary">Summary</a></li>
         </ul>
     </nav>
@@ -28,7 +33,6 @@
             <a href="#features" class="cta-btn">Explore Features</a>
         </div>
     </section>
-
 
     <section id="features" class="features-section">
         <h2>Our Features</h2>
@@ -48,7 +52,7 @@
                     Calculate your Body Mass Index (BMI) and understand where you stand. It’s simple and gives you a clear idea 
                     about your fitness.
                 </p>
-                <a href="./bmi.html" class="btn">Calculate BMI</a>
+                <a href="./index.html" class="btn">Calculate BMI</a>
             </div>
 
             <div class="feature-card">
@@ -66,5 +70,18 @@
     <footer>
         <p>© 2024 Fitness Tracker. All Rights Reserved.</p>
     </footer>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbarToggle = document.getElementById("navbar-toggle");
+            const navbarList = document.getElementById("navbar-list");
+
+            navbarToggle.addEventListener("click", function() {
+                navbarList.classList.toggle("active");
+            });
+        });
+
+    </script>
 </body>
 </html>

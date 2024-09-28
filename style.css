@@ -10,20 +10,16 @@
     --input-border-color: #555; /* Input border */
     --button-bg-color: #A6FF00; /* Button background */
     --button-hover-bg-color: #89CC00; /* Button hover background */
-    --table-header-bg: #333; /* Table header background */
-    --table-row-odd-bg: #262626; /* Alternating row background */
-    --table-row-even-bg: #2C2C2C; /* Alternating row background */
     --shadow-color: rgba(0, 0, 0, 0.5); /* Shadow for elements */
     --transition-speed: 0.3s; /* Transition speed */
     --font-body: 'Roboto', sans-serif;
     --font-header: 'Poppins', sans-serif;
 }
 
-/* Apply a background image */
 body {
     font-family: var(--font-body);
     background-color: var(--bg-color);
-    background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1950&q=80');
+    background-image: url('https://wallpapers.com/images/hd/fitness-muscular-man-rear-shot-o7hjg0p7g1afqd8t.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -37,7 +33,6 @@ body {
     overflow-y: auto;
 }
 
-/* Dark overlay to darken the background image */
 #app::before {
     content: "";
     position: fixed;
@@ -58,12 +53,19 @@ body {
     margin-bottom: 30px;
 }
 
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .navbar ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     justify-content: space-around;
+    width: 100%;
 }
 
 .navbar li {
@@ -81,6 +83,21 @@ body {
 
 .navbar a:hover {
     color: var(--primary-color);
+}
+
+/* Hamburger Menu Icon */
+.menu-icon {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-icon span {
+    height: 3px;
+    width: 25px;
+    background-color: var(--primary-color);
+    margin: 5px;
+    transition: all 0.3s;
 }
 
 /* BMI Calculator */
@@ -137,7 +154,6 @@ body {
     color: var(--text-color);
 }
 
-
 #app {
     width: 100%;
     padding: 30px;
@@ -150,4 +166,95 @@ body {
     font-size: 1.2rem;
     font-family: var(--font-body);
     transition: all var(--transition-speed);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
+    .bmi-calculator {
+        width: 70%;
+    }
+    
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar a {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .bmi-calculator {
+        width: 80%;
+        padding: 30px;
+    }
+
+    .bmi-calculator h3 {
+        font-size: 1.8rem;
+    }
+
+    .bmi-calculator input, .bmi-calculator button {
+        width: 90%;
+    }
+
+    .bmi-calculator button {
+        font-size: 1rem;
+    }
+
+    .bmi__result {
+        font-size: 1.2rem;
+    }
+
+    .navbar ul {
+        display: none; /* Hide the navbar by default */
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 60px; /* Position it below the navbar */
+        left: 0;
+        right: 0;
+        background-color: var(--card-bg-color);
+    }
+
+    .navbar.active ul {
+        display: flex; /* Show the navbar when active */
+    }
+
+    .menu-icon {
+        display: flex; /* Show hamburger icon */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .bmi-calculator {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .bmi-calculator h3 {
+        font-size: 1.6rem;
+    }
+
+    .bmi-calculator input, .bmi-calculator button {
+        width: 95%;
+    }
+
+    .bmi-calculator button {
+        font-size: 0.9rem;
+    }
+
+    .bmi__result {
+        font-size: 1rem;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar a {
+        font-size: 0.9rem;
+    }
 }

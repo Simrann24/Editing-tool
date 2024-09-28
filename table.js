@@ -7,7 +7,7 @@ class WorkoutTracker {
         const today = new Date().toISOString().split('T')[0];
         this.currentDate = today;
 
-        // Set default date values
+
         this.root.querySelector("#entry-date").value = today;
         this.root.querySelector("#summary-date").value = today;
 
@@ -15,7 +15,7 @@ class WorkoutTracker {
         this.updateView();
         this.updateSummary();
 
-        // Add Entry Event
+     
         this.root.querySelector(".tracker__add").addEventListener("click", () => {
             const date = this.root.querySelector("#entry-date").value;
             const workout = this.root.querySelector("#entry-workout").value;
@@ -33,14 +33,13 @@ class WorkoutTracker {
                 carbohydrates
             });
 
-            // Reset input fields to default values
             this.root.querySelector("#entry-duration").value = 30;
             this.root.querySelector("#entry-water").value = 0;
             this.root.querySelector("#entry-calories").value = 0;
             this.root.querySelector("#entry-carbohydrates").value = 0;
         });
 
-        // Date Selection Event for Summary
+  
         this.root.querySelector("#summary-date").addEventListener("change", (e) => {
             this.currentDate = e.target.value;
             this.updateSummary();
@@ -55,7 +54,7 @@ class WorkoutTracker {
 
     updateView() {
         const entriesContainer = this.root.querySelector(".tracker__entries");
-        entriesContainer.innerHTML = ""; // Clear previous entries
+        entriesContainer.innerHTML = ""; 
 
         this.entries.forEach((entry, index) => {
             const row = document.createElement("tr");
@@ -72,20 +71,17 @@ class WorkoutTracker {
                 <td><button class="delete-btn">Delete</button></td>
             `;
 
-            // Delete Entry Event
+      
             row.querySelector(".delete-btn").addEventListener("click", () => {
                 this.deleteEntry(index);
             });
 
-            // Optional: Implement Update Functionality
-            // row.querySelector(".update-btn").addEventListener("click", () => {
-            //     this.updateEntry(index);
-            // });
+            
 
             entriesContainer.appendChild(row);
         });
 
-        // Update the summary
+        
         this.updateSummary();
     }
 
@@ -93,17 +89,16 @@ class WorkoutTracker {
         const summaryElement = this.root.querySelector(".summary__result");
         const selectedDate = this.currentDate;
 
-        // Filter entries for the selected date
+      
         const filteredEntries = this.entries.filter(entry => entry.date === selectedDate);
 
-        // Calculate totals
+      
         const totalWater = filteredEntries.reduce((sum, entry) => sum + entry.water, 0);
         const totalCalories = filteredEntries.reduce((sum, entry) => sum + entry.calories, 0);
         const totalCarbohydrates = filteredEntries.reduce((sum, entry) => sum + entry.carbohydrates, 0);
         const totalDuration = filteredEntries.reduce((sum, entry) => sum + entry.duration, 0);
         const totalWorkouts = filteredEntries.length;
 
-        // Display summary
         if (filteredEntries.length > 0) {
             summaryElement.innerHTML = `
                 <strong>Date:</strong> ${selectedDate}<br>
@@ -138,5 +133,5 @@ class WorkoutTracker {
     }
 }
 
-// Initialize the Workout Tracker
+
 new WorkoutTracker(document.getElementById("app"));

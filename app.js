@@ -4,18 +4,17 @@ class WorkoutTracker {
         this.root = root;
         this.root.insertAdjacentHTML("afterbegin", WorkoutTracker.html());
     
-        // Adding event listener to calculate BMI
+      
         this.root.querySelector(".bmi__calculate").addEventListener("click", () => {
             const weight = parseFloat(this.root.querySelector(".bmi__weight").value);
             const heightCm = parseFloat(this.root.querySelector(".bmi__height").value);
-            const messageElement = this.root.querySelector(".bmi__message"); // Fix: Select messageElement
+            const messageElement = this.root.querySelector(".bmi__message"); 
 
             if (weight > 0 && heightCm > 0) {
                 const heightM = heightCm / 100;
                 const bmi = (weight / (heightM * heightM)).toFixed(2);
                 this.root.querySelector(".bmi__result").textContent = `Your BMI is ${bmi}`;
 
-                // Display the appropriate message based on BMI value
                 let message = '';
                 if (bmi < 18.5) {
                     message = "You are underweight. A balanced diet and strength training can help you gain healthy weight!";
@@ -27,11 +26,11 @@ class WorkoutTracker {
                     message = "You are in the obese range. Consulting a healthcare provider for guidance can help you achieve a healthier lifestyle.";
                 }
 
-                messageElement.textContent = message; // Display the message
+                messageElement.textContent = message; 
                 messageElement.style.fontWeight = "bold";
             } else {
                 this.root.querySelector(".bmi__result").textContent = `Please enter valid weight and height.`;
-                messageElement.textContent = ""; // Clear message if input is invalid
+                messageElement.textContent = ""; 
             }
         });
     }
