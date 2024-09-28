@@ -2,19 +2,23 @@ body {
     background-color: #181818;
     margin: 0;
     font-family: sans-serif;
+    background-image: url("Awesome-Fitness-Wallpaper-HD.jpg");
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    width: 100%;
+    height: 100vh;
 }
-
-
 
 .navbar {
     position: absolute; 
     top: 0;
     left: 0;
-    background-color: #010807ed;
+    background-color: rgba(1, 8, 7, 0.9); /* Slightly transparent */
     padding: 10px 0;
     width: 100%;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+    transition: background 0.3s ease; /* Smooth transition */
 }
 
 .navbar ul {
@@ -29,28 +33,30 @@ body {
     margin: 0;
 }
 
-
 .navbar a {
     color: white;
     text-decoration: none;
     padding: 10px 20px; 
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth color transition */
 }
 
 .navbar a:hover {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
+    color: #00E676; /* Highlight color on hover */
 }
+
 .tracker {
     font-size: 14px;
     border-collapse: collapse;
     width: 100%;
     max-width: 800px;
     margin: 20px auto;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3); /* Deeper shadow for effect */
     border-radius: 8px;
-    background-color: #ffffff29; 
-    margin-top:90px;
+    background-color: rgba(255, 255, 255, 0.15); /* Transparent background */
+    margin-top: 90px;
+    backdrop-filter: blur(10px); /* Blurring effect */
 }
 
 .tracker,
@@ -63,9 +69,10 @@ body {
     text-align: left;
     font-weight: bold;
     color: #ffffff;
-    background: #021010d2;
+    background: rgba(2, 16, 16, 0.8); /* More opaque for readability */
     padding: 1em;
     text-transform: uppercase;
+    border-bottom: 2px solid #009578; /* Accent line */
 }
 
 .tracker td {
@@ -74,10 +81,10 @@ body {
     border: none;
 }
 
-
-.summary{
-    color:white;
+.summary {
+    color: white;
 }
+
 .tracker__date,
 .tracker__workout,
 .tracker__duration {
@@ -85,9 +92,9 @@ body {
     width: 100%;
     box-sizing: border-box;
     padding: 0.5em;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(221, 221, 221, 0.5); /* Slightly transparent border */
     border-radius: 4px;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.1); /* Transparent input background */
 }
 
 .tracker__duration {
@@ -101,15 +108,16 @@ body {
     justify-content: center;
     background: none;
     border: none;
-    color: red;
+    color: #ff4d4f; /* Red accent color */
     font-size: 1.5em;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease; /* Added transform */
 }
 
 .tracker__button:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 50%;
+    transform: scale(1.1); /* Slight zoom effect */
 }
 
 .tracker__add {
@@ -117,12 +125,14 @@ body {
     color: #009578;
     font-size: 1.1em;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .tracker__add:hover {
     background: rgba(0, 149, 120, 0.1);
+    color: #00E676; /* Brighten color on hover */
 }
+
 .tracker__update {
     background-color: #009578;
     color: #ffffff;
@@ -132,23 +142,28 @@ body {
     text-align: center;
     font-size: 0.9em;
     border-radius: 4px;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease; /* Added transform */
 }
 
 .tracker__update:hover {
     background-color: #007a5c;
+    transform: scale(1.05); /* Slight zoom effect */
 }
 
 .bmi-calculator {
+    position: relative;
+    top: 20vh;
+    right: 20vw;
     display: flex;
     flex-direction: column;
     color: white;
     width: 20%;
-    background-color: #282926;
+    background-color: rgba(40, 41, 38, 0.8); /* 80% transparency */
     padding: 1.5em;
     margin: 20px 0;
     border-radius: 8px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px); /* Blurring effect */
 }
 
 .bmi__height,
@@ -163,14 +178,16 @@ body {
 .bmi__weight input {
     width: 40%;
     padding: 0.5em;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(221, 221, 221, 0.5);
     border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 .bmi__calculate {
     width: 40%;
     margin-top: 10px;
-    background-color: #009578;
+    background-color: rgba(0, 149, 120, 0.8);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -181,7 +198,8 @@ body {
 }
 
 .bmi__calculate:hover {
-    background-color: #007a5c;
+    background-color: rgba(0, 122, 92, 0.8);
+    transform: scale(1.05); /* Slight zoom effect */
 }
 
 .bmi__result {
@@ -195,14 +213,77 @@ input, select {
     padding: 0.7em;
     margin: 5px 0;
     box-sizing: border-box;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(221, 221, 221, 0.5);
     border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent */
+    color: white; /* Ensures visibility */
 }
 
 input:focus, select:focus {
     border-color: #009578;
     outline: none;
 }
-.calendar__date{
+
+.calendar__date {
     width: 10%;
+}
+
+/* Global Styles */
+body {
+    background-color: #1c1c1c;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Entry Form Section */
+.entry-section {
+    background-color: rgba(51, 51, 51, 0.8); /* 80% transparency */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(8px); /* Blurring effect */
+}
+
+.entry-section input,
+.entry-section select {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(85, 85, 85, 0.8); /* 80% opacity for borders */
+    background-color: rgba(28, 28, 28, 0.8); /* Slightly transparent */
+    color: white;
+}
+
+.entry-section .update-btn {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.entry-section .update-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.entry-section .remove-btn {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s
 }

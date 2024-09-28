@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracker</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #E0E0E0; /* Light text color for contrast */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container Styles */
+        #app {
+            width: 80%; /* Set outer box width to 80% */
+            max-width: 1200px; /* Optional: Set a max width */
+            background: #1E1E1E; /* Slightly lighter background for the app */
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            overflow: hidden; /* Prevent overflow of outer container */
+        }
+
+        /* Header Styles */
+        h1 {
+            text-align: center;
+            color: #00E676; /* Bright green for headers */
+            margin-bottom: 25px;
+        }
+
+        /* Scrollable Table Container */
+        .table-container {
+            max-height: 400px; /* Set a maximum height for the table */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        /* Table Styles */
+        .tracker {
+            width: 100%; /* Table width to 100% */
+            border-collapse: separate; /* Allow spacing between cells */
+            border-spacing: 10px; /* Add gap between columns */
+            margin: 20px 0;
+            background-color: #2A2A2A; /* Table background */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .tracker th {
+            background-color: #00C853; /* Header background */
+            color: #fff; /* White text */
+            padding: 14px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tracker td {
+            padding: 12px;
+            text-align: center;
+            font-size: 15px;
+            border: 1px solid #333; /* Subtle divider */
+            color: #E0E0E0; /* Light text */
+            background-color: #333; /* Cell background */
+        }
+
+        /* Input Styles */
+        .tracker__date,
+        .tracker__duration,
+        .tracker__water,
+        .tracker__calories,
+        .tracker__carbohydrates {
+            width: 100%; /* Full width of input */
+            padding: 8px;
+            font-size: 14px;
+            background-color: #333; /* Input background */
+            border: 1px solid #555; /* Input border */
+            color: #E0E0E0; /* Light text */
+            border-radius: 6px;
+            outline: none;
+        }
+
+        /* Workout Dropdown */
+        .tracker__workout {
+            width: 100%; /* Full width of dropdown */
+            padding: 8px;
+            font-size: 14px;
+            background-color: #333; /* Dropdown background */
+            border: 1px solid #555; /* Dropdown border */
+            color: #E0E0E0; /* Light text */
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .tracker__duration {
+            text-align: right;
+        }
+
+        /* Button Styles */
+        .tracker__button {
+            background-color: #FF5252; /* Red for buttons */
+            color: #fff; /* White text */
+            padding: 8px 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .tracker__button:hover {
+            background-color: #E53935; /* Darker red on hover */
+        }
+
+        .tracker__add {
+            display: inline-block;
+            padding: 12px 18px;
+            background-color: #00E676; /* Bright green for add button */
+            color: #fff; /* White text */
+            font-size: 18px;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .tracker__add:hover {
+            background-color: #00C853; /* Darker green on hover */
+        }
+
+        /* Row Styles */
+        .tracker__entries .tracker__row:nth-child(odd) {
+            background-color: #262626; /* Alternating row color */
+        }
+
+        .tracker__entries .tracker__row:nth-child(even) {
+            background-color: #333; /* Alternating row color */
+        }
+
+        /* Focus Styles */
+        .tracker__date:focus,
+        .tracker__workout:focus,
+        .tracker__duration:focus,
+        .tracker__water:focus,
+        .tracker__calories:focus,
+        .tracker__carbohydrates:focus {
+            border-color: #00C853; /* Highlight on focus */
+        }
+
+        /* Summary Styles */
+        .summary {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .calendar__date {
+            font-size: 14px;
+            padding: 8px;
+            background-color: #333; /* Date input background */
+            border: 1px solid #555; /* Date input border */
+            color: #E0E0E0; /* Light text */
+            border-radius: 6px;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        .summary__result {
+            margin-top: 12px;
+            font-size: 18px;
+            color: #00E676; /* Bright green for summary results */
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 768px) {
+            .tracker th,
+            .tracker td {
+                font-size: 14px; /* Smaller font for smaller screens */
+            }
+
+            .tracker__date,
+            .tracker__workout,
+            .tracker__duration,
+            .tracker__water,
+            .tracker__calories,
+            .tracker__carbohydrates {
+                font-size: 12px; /* Smaller input font */
+            }
+
+            .tracker__button {
+                font-size: 14px; /* Smaller button font */
+                padding: 5px 10px; /* Smaller button padding */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Workout Tracker</h1>
+        <div class="table-container">
+            <table class="tracker">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Workout</th>
+                        <th>Duration</th>
+                        <th>Water (L)</th>
+                        <th>Calories</th>
+                        <th>Carbohydrates (g)</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody class="tracker__entries"></tbody>
+            </table>
+        </div>
+
+        <!-- Moved the summary section here -->
+        <div class="summary">
+            <h3>Summary</h3>
+            <input type="date" class="calendar__date" value="${new Date().toISOString().split('T')[0]}">
+            <select class="tracker__workout">
+                <option value="Walking">Walking</option>
+                <option value="Running">Running</option>
+                <option value="Cycling">Cycling</option>
+                <option value="Swimming">Swimming</option>
+                <option value="Strength Training">Strength Training</option>
+                <option value="Yoga">Yoga</option>
+                <option value="HIIT">HIIT</option>
+                <option value="Pilates">Pilates</option>
+            </select>
+            <p class="summary__result"></p>
+            <span class="tracker__add">Add Entry &plus;</span>
+        </div>
+
+        <script>
+        class WorkoutTracker {
+            static LOCAL_STORAGE_DATA_KEY = "workout-tracker-entries";
+        
+            constructor(root) {
+                this.root = root;
+                this.entries = [];
+                this.currentDate = new Date().toISOString().split('T')[0]; 
+        
+                this.loadEntries();
+                this.updateView();
+        
+                this.root.querySelector(".tracker__add").addEventListener("click", () => {
+                    const selectedWorkout = this.root.querySelector(".tracker__workout").value;
+                    this.addEntry({
+                        date: this.currentDate,
+                        workout: selectedWorkout,
+                        duration: 30,
+                        water: 0,
+                        calories: 0,
+                        carbohydrates: 0
+                    });
+                });
+        
+                this.root.querySelector(".calendar__date").addEventListener("change", (e) => {
+                    this.currentDate = e.target.value;
+                    this.updateView();
+                });
+            }
+        
+            addEntry(entry) {
+                this.entries.push(entry);
+                this.saveEntries();
+                this.updateView();
+            }
+        
+            updateView() {
+                const entriesContainer = this.root.querySelector(".tracker__entries");
+                entriesContainer.innerHTML = ""; // Clear previous entries
+        
+                this.entries.forEach((entry, index) => {
+                    const row = document.createElement("tr");
+                    row.className = "tracker__row";
+        
+                    row.innerHTML = `
+                        <td>${entry.date}</td>
+                        <td>${entry.workout}</td>
+                        <td>${entry.duration}</td>
+                        <td>${entry.water}</td>
+                        <td>${entry.calories}</td>
+                        <td>${entry.carbohydrates}</td>
+                        <td><button class="update-btn">Update</button></td>
+                        <td><button class="delete-btn">Delete</button></td>
+                    `;
+        
+                    row.querySelector(".delete-btn").addEventListener("click", () => {
+                        this.deleteEntry(index);
+                    });
+        
+                    entriesContainer.appendChild(row);
+                });
+        
+                // Update the summary
+                const summaryElement = this.root.querySelector(".summary__result");
+                summaryElement.textContent = `Total Entries: ${this.entries.length}`;
+            }
+        
+            deleteEntry(index) {
+                this.entries.splice(index, 1);
+                this.saveEntries();
+                this.updateView();
+            }
+        
+            loadEntries() {
+                const data = localStorage.getItem(WorkoutTracker.LOCAL_STORAGE_DATA_KEY);
+                if (data) {
+                    this.entries = JSON.parse(data);
+                }
+            }
+        
+            saveEntries() {
+                localStorage.setItem(WorkoutTracker.LOCAL_STORAGE_DATA_KEY, JSON.stringify(this.entries));
+            }
+        }
+        
+        new WorkoutTracker(document.getElementById("app"));
+        </script>
+    </div>
+</body>
+
+</html>

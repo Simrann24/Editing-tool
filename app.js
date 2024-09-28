@@ -48,33 +48,15 @@ class WorkoutTracker {
           <nav class="navbar">
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#workout-tracker">Workout Tracker</a></li>
+                <li><a href="./table.html">Workout Tracker</a></li>
                 <li><a href="#bmi-calculator">BMI Calculator</a></li>
                 <li><a href="#summary">Summary</a></li>
             </ul>
         </nav>
-            <table class="tracker">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Workout</th>
-                        <th>Duration</th>
-                        <th>Water (L)</th>
-                        <th>Calories</th>
-                        <th>Carbohydrates (g)</th>
-                        <th>Update</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody class="tracker__entries"></tbody>
-                <tbody>
-                    <tr class="tracker__row tracker__row--add">
-                        <td colspan="8">
-                            <span class="tracker__add">Add Entry &plus;</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+       
+        
+            
             <div class="bmi-calculator">
                 <h3>BMI Calculator</h3>
                 <input type="number" class="bmi__weight" placeholder="Weight (kg)" min="1">
@@ -82,11 +64,7 @@ class WorkoutTracker {
                 <button class="bmi__calculate">Calculate BMI</button>
                 <p class="bmi__result"></p>
             </div>
-            <div class="summary">
-                <h3>Summary</h3>
-                <input type="date" class="calendar__date" value="${new Date().toISOString().split('T')[0]}">
-                <p class="summary__result"></p>
-            </div>
+           
         `;
     }
 
@@ -248,6 +226,7 @@ class WorkoutTracker {
             <strong>Total Carbohydrates:</strong> ${total.carbohydrates} g
         `;
     }
+    
 }
 
 const app = document.getElementById("app");
