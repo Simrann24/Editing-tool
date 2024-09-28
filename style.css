@@ -1,289 +1,153 @@
-body {
-    background-color: #181818;
-    margin: 0;
-    font-family: sans-serif;
-    background-image: url("Awesome-Fitness-Wallpaper-HD.jpg");
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat; 
-    width: 100%;
-    height: 100vh;
+:root {
+    /* Color Palette */
+    --bg-color: #0D0D0D; /* Very dark background */
+    --card-bg-color: #1A1A1A; /* Dark card background */
+    --text-color: #E0E0E0; /* Light text color */
+    --primary-color: #A6FF00; /* Neon Green for buttons and highlights */
+    --secondary-color: #BB86FC; /* Soft purple for links */
+    --accent-color: #FF5722; /* Orange for buttons */
+    --input-bg-color: #2C2C2C; /* Input background */
+    --input-border-color: #555; /* Input border */
+    --button-bg-color: #A6FF00; /* Button background */
+    --button-hover-bg-color: #89CC00; /* Button hover background */
+    --table-header-bg: #333; /* Table header background */
+    --table-row-odd-bg: #262626; /* Alternating row background */
+    --table-row-even-bg: #2C2C2C; /* Alternating row background */
+    --shadow-color: rgba(0, 0, 0, 0.5); /* Shadow for elements */
+    --transition-speed: 0.3s; /* Transition speed */
+    --font-body: 'Roboto', sans-serif;
+    --font-header: 'Poppins', sans-serif;
 }
 
-.navbar {
-    position: absolute; 
+/* Apply a background image */
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+/* Dark overlay to darken the background image */
+#app::before {
+    content: "";
+    position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(1, 8, 7, 0.9); /* Slightly transparent */
-    padding: 10px 0;
     width: 100%;
-    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
-    transition: background 0.3s ease; /* Smooth transition */
+    height: 100%;
+    background: rgba(18, 18, 18, 0.85); /* Dark overlay */
+    z-index: -1;
+}
+
+/* Navbar Styles */
+.navbar {
+    background: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    margin-bottom: 30px;
 }
 
 .navbar ul {
     list-style: none;
-    display: flex;
-    justify-content: space-evenly; 
-    margin: 0;
     padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
 }
 
 .navbar li {
-    margin: 0;
+    display: inline;
 }
 
 .navbar a {
-    color: white;
+    color: var(--secondary-color);
     text-decoration: none;
-    padding: 10px 20px; 
-    transition: background 0.3s ease, color 0.3s ease; /* Smooth color transition */
+    font-size: 1.2rem;
+    font-family: var(--font-header);
+    font-weight: 600;
+    transition: color var(--transition-speed);
 }
 
 .navbar a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-    color: #00E676; /* Highlight color on hover */
+    color: var(--primary-color);
 }
 
-.tracker {
-    font-size: 14px;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3); /* Deeper shadow for effect */
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.15); /* Transparent background */
-    margin-top: 90px;
-    backdrop-filter: blur(10px); /* Blurring effect */
-}
-
-.tracker,
-.tracker * {
-    font-family: sans-serif;
-}
-
-.tracker th {
-    font-size: 1.15em;
-    text-align: left;
-    font-weight: bold;
-    color: #ffffff;
-    background: rgba(2, 16, 16, 0.8); /* More opaque for readability */
-    padding: 1em;
-    text-transform: uppercase;
-    border-bottom: 2px solid #009578; /* Accent line */
-}
-
-.tracker td {
-    padding: 0.75em;
-    text-align: left;
-    border: none;
-}
-
-.summary {
-    color: white;
-}
-
-.tracker__date,
-.tracker__workout,
-.tracker__duration {
-    display: inline-block;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0.5em;
-    border: 1px solid rgba(221, 221, 221, 0.5); /* Slightly transparent border */
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.1); /* Transparent input background */
-}
-
-.tracker__duration {
-    width: 5em;
-    text-align: center;
-}
-
-.tracker__button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
-    color: #ff4d4f; /* Red accent color */
-    font-size: 1.5em;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease; /* Added transform */
-}
-
-.tracker__button:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    transform: scale(1.1); /* Slight zoom effect */
-}
-
-.tracker__add {
-    padding: 0.8em 1em;
-    color: #009578;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
-}
-
-.tracker__add:hover {
-    background: rgba(0, 149, 120, 0.1);
-    color: #00E676; /* Brighten color on hover */
-}
-
-.tracker__update {
-    background-color: #009578;
-    color: #ffffff;
-    border: none;
-    padding: 0.5em 1em;
-    cursor: pointer;
-    text-align: center;
-    font-size: 0.9em;
-    border-radius: 4px;
-    transition: background 0.3s ease, transform 0.2s ease; /* Added transform */
-}
-
-.tracker__update:hover {
-    background-color: #007a5c;
-    transform: scale(1.05); /* Slight zoom effect */
-}
-
+/* BMI Calculator */
 .bmi-calculator {
-    position: relative;
-    top: 20vh;
-    right: 20vw;
-    display: flex;
-    flex-direction: column;
-    color: white;
-    width: 20%;
-    background-color: rgba(40, 41, 38, 0.8); /* 80% transparency */
-    padding: 1.5em;
-    margin: 20px 0;
+    background: var(--card-bg-color);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    width: 50%; /* Limit the calculator width */
+    margin: 20px auto;
+    text-align: center;
+}
+
+.bmi-calculator h3 {
+    color: var(--primary-color);
+    font-family: var(--font-header);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.bmi-calculator input {
+    width: 80%;
+    padding: 15px;
+    margin: 15px 0;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px); /* Blurring effect */
+    color: var(--text-color);
+    font-size: 1rem;
 }
 
-.bmi__height,
-.bmi__weight {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-
-.bmi__height input,
-.bmi__weight input {
-    width: 40%;
-    padding: 0.5em;
-    border: 1px solid rgba(221, 221, 221, 0.5);
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-.bmi__calculate {
-    width: 40%;
-    margin-top: 10px;
-    background-color: rgba(0, 149, 120, 0.8);
-    color: white;
+.bmi-calculator button {
+    width: 80%;
+    padding: 15px;
+    background-color: var(--button-bg-color);
+    color: #0D0D0D;
+    font-size: 1.2rem;
     border: none;
-    padding: 10px 20px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1em;
-    border-radius: 4px;
-    transition: background 0.3s ease;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+    margin-top: 20px;
 }
 
-.bmi__calculate:hover {
-    background-color: rgba(0, 122, 92, 0.8);
-    transform: scale(1.05); /* Slight zoom effect */
+.bmi-calculator button:hover {
+    background-color: var(--button-hover-bg-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .bmi__result {
-    margin-top: 10px;
-    font-size: 1.1em;
-    color: #333;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: var(--text-color);
 }
 
-input, select {
-    width: 100%;
-    padding: 0.7em;
-    margin: 5px 0;
-    box-sizing: border-box;
-    border: 1px solid rgba(221, 221, 221, 0.5);
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent */
-    color: white; /* Ensures visibility */
-}
-
-input:focus, select:focus {
-    border-color: #009578;
-    outline: none;
-}
-
-.calendar__date {
-    width: 10%;
-}
-
-/* Global Styles */
-body {
-    background-color: #1c1c1c;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
 
 #app {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
+    width: 100%;
+    padding: 30px;
+    background: transparent;
 }
 
-/* Entry Form Section */
-.entry-section {
-    background-color: rgba(51, 51, 51, 0.8); /* 80% transparency */
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    backdrop-filter: blur(8px); /* Blurring effect */
-}
-
-.entry-section input,
-.entry-section select {
-    margin: 5px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid rgba(85, 85, 85, 0.8); /* 80% opacity for borders */
-    background-color: rgba(28, 28, 28, 0.8); /* Slightly transparent */
-    color: white;
-}
-
-.entry-section .update-btn {
-    background-color: #28a745;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.entry-section .update-btn:hover {
-    background-color: #218838; /* Darker green on hover */
-}
-
-.entry-section .remove-btn {
-    background-color: red;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s
+.bmi__message {
+    color: var(--primary-color);
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-family: var(--font-body);
+    transition: all var(--transition-speed);
 }

@@ -1,0 +1,182 @@
+:root {
+    --bg-color: #121212;
+    --card-bg-color: #1E1E1E;
+    --text-color: #E0E0E0;
+    --primary-color: #BB86FC;
+    --secondary-color: #03DAC6;
+    --accent-color: #FF5722;
+    --input-bg-color: #2C2C2C;
+    --button-bg-color: #03DAC6;
+    --button-hover-bg-color: #029E9C;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --transition-speed: 0.3s;
+    --font-body: 'Roboto', sans-serif;
+    --font-header: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background: var(--card-bg-color);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    margin-bottom: 30px;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar li {
+    display: inline;
+}
+
+.navbar a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color var(--transition-speed);
+    font-family: var(--font-header);
+    font-weight: 600;
+}
+
+.navbar a:hover {
+    color: var(--secondary-color);
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('Awesome-Fitness-Wallpaper-HD.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    color: var(--text-color);
+    text-align: center;
+    position: relative;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(18, 18, 18, 0.85);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-family: var(--font-header);
+    color: var(--primary-color);
+    text-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.cta-btn {
+    padding: 10px 20px;
+    background-color: var(--button-bg-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.cta-btn:hover {
+    background-color: var(--button-hover-bg-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Features Section */
+.features-section {
+    background-color: var(--bg-color);
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.features-section h2 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-family: var(--font-header);
+}
+
+.features-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.feature-card {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    flex: 1;
+    max-width: 300px;
+    text-align: center;
+}
+
+.feature-card h3 {
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.feature-card .btn {
+    padding: 10px;
+    background-color: var(--button-bg-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.feature-card .btn:hover {
+    background-color: var(--button-hover-bg-color);
+    transform: translateY(-2px);
+}
+
+/* Footer Section */
+footer {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    text-align: center;
+    color: var(--text-color);
+}

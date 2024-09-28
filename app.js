@@ -1,39 +1,46 @@
 class WorkoutTracker {
-    static LOCAL_STORAGE_DATA_KEY = "workout-tracker-entries";
 
     constructor(root) {
         this.root = root;
         this.root.insertAdjacentHTML("afterbegin", WorkoutTracker.html());
-        this.entries = [];
-        this.currentDate = new Date().toISOString().split('T')[0]; 
-
-        this.loadEntries();
-       
+    
+        // Adding event listener to calculate BMI
         this.root.querySelector(".bmi__calculate").addEventListener("click", () => {
             const weight = parseFloat(this.root.querySelector(".bmi__weight").value);
             const heightCm = parseFloat(this.root.querySelector(".bmi__height").value);
+            const messageElement = this.root.querySelector(".bmi__message"); // Fix: Select messageElement
+
             if (weight > 0 && heightCm > 0) {
                 const heightM = heightCm / 100;
                 const bmi = (weight / (heightM * heightM)).toFixed(2);
                 this.root.querySelector(".bmi__result").textContent = `Your BMI is ${bmi}`;
+
+                // Display the appropriate message based on BMI value
+                let message = '';
+                if (bmi < 18.5) {
+                    message = "You are underweight. A balanced diet and strength training can help you gain healthy weight!";
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    message = "Great job! You have a healthy BMI. Keep up the good work with regular exercise and a nutritious diet.";
+                } else if (bmi >= 25 && bmi < 29.9) {
+                    message = "You are in the overweight range. Consider working towards a balanced routine of diet and exercise.";
+                } else {
+                    message = "You are in the obese range. Consulting a healthcare provider for guidance can help you achieve a healthier lifestyle.";
+                }
+
+                messageElement.textContent = message; // Display the message
+                messageElement.style.fontWeight = "bold";
             } else {
                 this.root.querySelector(".bmi__result").textContent = `Please enter valid weight and height.`;
+                messageElement.textContent = ""; // Clear message if input is invalid
             }
         });
-
-        this.root.querySelector(".calendar__date").addEventListener("change", (e) => {
-            this.currentDate = e.target.value;
-            this.updateView();
-        });
-
-      
     }
 
     static html() {
         return `
           <nav class="navbar">
             <ul>
-                <li><a href="#home">Home</a></li>
+                <li><a href="./home.html">Home</a></li>
                 <li><a href="./table.html">Workout Tracker</a></li>
                 <li><a href="#bmi-calculator">BMI Calculator</a></li>
                 <li><a href="#summary">Summary</a></li>
@@ -41,7 +48,6 @@ class WorkoutTracker {
         </nav>
 
        
-        
             
             <div class="bmi-calculator">
 
@@ -50,62 +56,14 @@ class WorkoutTracker {
                 <input type="number" class="bmi__height" placeholder="Height (cm)" min="1">
                 <button class="bmi__calculate">Calculate BMI</button>
                 <p class="bmi__result"></p>
+                <p class="bmi__message"></p>
                 
             </div>
            
         `;
     }
 
-    static rowHtml() {
-        return `
-            <tr class="tracker__row">
-                <td>
-                    <input type="date" class="tracker__date">
-                </td>
-                <td>
-                    <select class="tracker__workout">
-                        <option value="walking">Walking</option>
-                        <option value="running">Running</option>
-                        <option value="outdoor-cycling">Outdoor Cycling</option>
-                        <option value="indoor-cycling">Indoor Cycling</option>
-                        <option value="swimming">Swimming</option>
-                        <option value="yoga">Yoga</option>
-                    </select>
-                </td>
-                <td class="tracker__duration-container">
-                    <input type="number" class="tracker__duration" min="0">
-                    <span class="tracker__text">minutes</span>
-                </td>
-                
-                <td>
-                    <input type="number" class="tracker__water" min="0">
-                </td>
-                <td>
-                    <input type="number" class="tracker__calories" min="0">
-                </td>
-                <td>
-                    <input type="number" class="tracker__carbohydrates" min="0">
-                </td>
-                <td>
-                    <button type="button" class="tracker__button tracker__update">Update</button>
-                </td>
-                <td>
-                    <button type="button" class="tracker__button tracker__delete">&times;</button>
-                </td>
-            </tr>
-        `;
-    }
 
-    loadEntries() {
-        this.entries = JSON.parse(localStorage.getItem(WorkoutTracker.LOCAL_STORAGE_DATA_KEY) || "[]");
-    }
-
-    saveEntries() {
-        localStorage.setItem(WorkoutTracker.LOCAL_STORAGE_DATA_KEY, JSON.stringify(this.entries));
-    }
-
-   
-    
 }
 
 const app = document.getElementById("app");
