@@ -21,7 +21,7 @@ Welcome to the Fitness Tracker project! This web application allows users to tra
 - **HTML5**: For structuring the web pages.
 - **CSS3**: For styling the application, using a modern design approach.
 - **JavaScript**: For adding interactivity and handling user events.
-- **[Your Framework or Library]**: If you used any frameworks like Bootstrap or libraries like jQuery, mention them here.
+
 
 ## Installation
 Clone the repository:
